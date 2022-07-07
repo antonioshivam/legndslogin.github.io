@@ -1,1692 +1,543 @@
-<html>
-<head>
-<title>Schicordance-Sign in/up</title>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-<style>
-img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
-display: none;}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-* {
-	margin:0 auto;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-/*Input/Select Placeholder*/
-::placeholder,.country{
-	color: #898989;
-}
-::-moz-placeholder{
-	color: #fff;
-}
-/*Scroll Bars*/
-::-webkit-scrollbar {
-	display: none;
-	overflow: hidden;
-}
-.scroll-hidden {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    height: 235px;
-    overflow-y: scroll;
-}
-/* Wallpaper */
-body{
-    background: #b78846 url(https://i.pinimg.com/564x/f5/7f/bb/f57fbb206ac2fd1ef38badb9c8a13ad0.jpg) no-repeat center center fixed!important;
-    -webkit-background-size: cover!important;
-    -moz-background-size: cover!important;
-    -o-background-size: cover!important;
-    background-size: cover!important;
-}
-/*Column Blur*/
-.column {
-  background-color: rgb(0 0 0 / 50%);
-}
-
-/* Backdrop support: Transparent and Blurred */
-@supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
-.column {
-    background-color: rgb(0 0 0 / 50%);
-    -webkit-backdrop-filter: blur(2em);
-    backdrop-filter: blur(2em);
-  }
-}
-
-/*--------------------------------------------------->
-FONT DATA
------------------------------------------------------>
-*/
-/*FontAwesome Bootstrap Fonts*/
-@font-face {
-font-family: "FontAwesome";
-font-weight: normal;
-font-style : normal;
-       src : url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0");
-       src : url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"),
-             url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"),
-             url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"),
-             url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"),
-             url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
-}
-/*FontAwesome Font Style*/
-.country-select:before,.two-step:before,.phone:before,.first:before,.last:before,.mail:before,.r-pass:before,.pass:before,.user:before,.cright:before,.logo:before {
-    font-family: 'FontAwesome';
-    font-weight: normal;
-    font-style: normal;
-    color: #5f84f1;
-}
-/*Logo Icon*/
-.logo:before{
-    content: '\f2bd';
-	font-size: 40px;
-    border-radius: 80px;
-    background: linear-gradient(to bottom, #b78846 32%, #ffcb9a 50%, #624925 72%);
-    border-style: outset;
-	color: black
-}
-	
-/*Input User Icon*/
-.user:before {
-    content: '\f007';
-}
-/*Input First Name Icon*/
-.first:before {
-    content: '\f2c1';
-}
-/*Input Last Name Icon*/
-.last:before {
-    content: '\f2c1';
-}
-/*Input Email Icon*/
-.mail:before {
-    content: '\f0e0';
-}
-/*Input Password Icon*/
-.r-pass:before,.pass:before {
-    content: '\f09c';
-}
-/*Input Phone Number Icon*/
-.phone:before {
-    content: '\f095';
-}
-/*Input 2FA Number Icon*/
-.two-step:before {
-    content: '\f0d0 ';
-}
-.country-select:before {
-    content: '\f0ac';
-}
-/*Input User/First/Last/Email/Pass Correction*/
-.country-select:before,.two-step:before,.phone:before,.first:before,.last:before,.mail:before,.r-pass:before,.pass:before,.user:before {
-    float: left;
-    clear: both;
-    margin-left: -30px;
-    line-height: 40px;
-}
-/*Footer Icon*/
-.cright:before {
-    content: '\f1f9';
-    margin-left: 5px;
-    margin-right: 5px;
-}
-/*--------------------------------------------------->
-PAGE DATA
------------------------------------------------------>
-*/
-/*Center Column On Page*/
-.middle{
-  margin-left: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-}
-/*Column Body*/
-.column {
-    margin: 0 auto;
-    width: 550px;
-    height: 410px;
-    border-radius: 10px 10px 10px 10px;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;	
-}
-
-/*code for image slider*/
-.outer-box{
-  position: absolute;
-  border-radius: 10px 10px 10px 10px;
-  top:16.6%;
-  left:16.6%;
-  height:62.4%;
-  width: 31%;
-  overflow: hidden;
-}
-
-.outer-box:hover{
-	-webkit-box-shadow: 0px 0px 10px #000000;
-    -moz-box-shadow: 0px 0px 10px #000000;
-    box-shadow: 0px 0px 10px #000000;
-}
-
-/*Column Hover*/
-.column:hover {
-    -webkit-box-shadow: 0px 0px 10px #000000;
-    -moz-box-shadow: 0px 0px 10px #000000;
-    box-shadow: 0px 0px 10px #000000;
-}
-/*Login Logo*/
-.branding-logo {
-    line-height: 70px;
-    text-align: center;
-    align-content: center;
-	  background: transparent url(https://media.tenor.com/images/d14ad59fa1171907af93528034daf263/tenor.gif) fixed!important;
-	  opacity: 0.8;
-    background-repeat: no-repeat;
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    border: 1px solid #151515;
-    border-radius: 10px 10px 10px 10px;
-    width: 77px;
-    height: 73px;
-    overflow: hidden;
-	  animation: image 2s infinite alternate;
-}
-
-/*Site Branding*/
-.branding-title {
-    font-family: fantasy;
-    font-size: 20px;
-    color: #bcc3c5;
-    text-align: center;
-    margin-top: 5px;
-}
-/*Input Column*/
-.input-field {
-    padding-left: 50px;
-    padding-right: 20px;
-    padding-bottom: 5px;
-}
-/*Input Column Help*/
-.input-field-help {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 5px;
-}
-/*Input Style*/
-.country,.input-field .loger {
-    width: 100%;
-    margin: 5px 0px 5px 0px;
-    padding: 10px 10px 10px 10px;
-    background: #000000;
-    border: 1px solid #0d2637;
-}
-/*Input Shift*/
-.country-select,.input-field p{
-    margin-right: 15px;
-}
-/*Dropdown Options*/
-.country{
-	-moz-appearance: none;
-}
-/*Input Style Color*/
-.input-field .loger {
-    color: #fff;
-}
-/*Required Star*/
-.first:after,.last:after,.country-select:after,.r-pass:after,.mail:after {
-    content: " *";
-    color: red;
-    float: right;
-    margin-top: 15px;
-    margin-right: -20px;
-}
-/*Login/Signup*/
-.input-identity {
-    text-align: left;
-	margin-left:10%;
-    font-size: 25px;
-    font-weight: bold;
-    color: #002eadde;
-    padding: 10px;
-}
-/*Terms Register Shift*/
-.terms-info {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: #7d7d7d;
-}
-/*Terms Register Links*/
-.terms-info a{
-    text-decoration: none;
-    color: #fff;
-}
-/*Terms Register Branding Text*/
-.terms-info b {
-    color: #5f84f1;
-}
-/*Terms Register Text*/
-.ter-reg {
-    color: #378435;
-}
-
-/*Help Column Shift*/
-.help-column {
-    text-align: left;
-}
-/*Help Title Text*/
-.help-column strong {
-    color: #ffffff;
-}
-/*Help Title Padding Text*/
-.help-column p {
-    padding-top: 10px;
-}
-/*Help Global Text*/
-.help-column li {
-    color: #9b9fa0;
-}
-/*Help Link Text*/
-.help-column a {
-    color: #5679dc;
-}
-/*Help Required Text*/
-.help-star {
-    color: #ff0000;
-    display: contents;
-}
-/*Footer Shift*/
-.login-footer {
-    margin-top: 10px;
-    z-index:100;
-    color: #fff;
-}
-/*Footer Links*/
-.login-footer div a{
-    text-decoration: none;
-    color: #fff;
-}
-/*Footer Bold Spaces*/
-.login-footer div b {
-    color: #5679dc;
-}
-/*Footer Correction*/
-.login-footer div a, .login-footer div b, .login-footer div p {
-    display: contents;
-}
-/*--------------------------------------------------->
-SLIDER DATA
------------------------------------------------------>
-*/
-/*Slider Position*/
-.login-selection {
-  position: relative;
-  overflow: hidden;
-}
-/*Slider*/
-.login-selection .slide {
-  white-space: nowrap;
-  font-size: 0;
-  transition: 0.8s;
-}
-/*Slide Columns*/
-.login-selection .slide > * {
-    font-size: 1rem;
-    display: inline-block;
-    white-space: normal;
-    vertical-align: top;
-    width: 100%;
-    background: none 50% no-repeat;
-    background-size: cover;
-    margin-top: 10px;
-}
-/*Slider Buttons*/
-.selector-login,.selector-legendary_login,.selector-register,.selector-recover,.selector-help {
-    background-color: #063b51;
-    border-radius: 3px;
-    border: 1px solid #000000;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    padding: 5px 20px;
-    text-decoration: none;
-}
-/*Slider Buttons Hover*/
-.selector-login:hover,.selector-register:hover,.selector-recover:hover,.selector-help:hover {
-    background-color: #1e90ff;
-	color: #000;
-	box-shadow: 0 0 20px 5px rgba(51, 152, 219, 0.5);
-	font-family: Algerian;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-/*Slider Buttons Active*/
-.selector-login:active,.selector-register:active,.selector-recover:active,.selector-help:active {
-	position:relative;
-	top:1px;
-}
-/*Submit Button Shift*/
-.log-sub {
-    margin-top: 5px;
-}
-/*Submit Button Settings*/
-.log-sub input {
-    width: 100%;
-    border-radius: 3px;
-    border: 1px solid #000000;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    text-decoration: none;
-    padding: 5px 5px 5px 5px;
-}
-/*Submit Button Settings Active*/
-.log-sub input:active {
-	position:relative;
-	top:1px;
-}
-/*Submit Button Blue*/
-.blu-b input {
-    background-color: #196c98;
-}
-/*Submit Button Green*/
-.reg-b input {
-    background-color: #025200;
-}
-/*Submit Button Red*/
-.red-b input{
-    background-color: #5f0606;
-}
-/*Slider Buttons Hover*/
-.log-sub input:hover {
-    background-color: #d0ff00;
-	color: #000;
-	transform: scale(1.1);
-	font-family: Old English Text MT;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-/*Slider Button Shift*/
-.bsd {
-    margin-top: 10px;
-}
-/*Slider Animation*/
-#login:target ~ .slide {transform: translateX(   0%); -webkit-transform: translateX(   0%);}
-#register:target ~ .slide {transform: translateX(-100%); -webkit-transform: translateX(-100%);}
-#recover:target ~ .slide {transform: translateX(-200%); -webkit-transform: translateX(-200%);}
-#help:target ~ .slide {transform: translateX(-300%); -webkit-transform: translateX(-300%);}
-/*--------------------------------------------------->
-RESPONSIVE DATA
------------------------------------------------------>
-*/
-/*Media_Width*/
-@media screen and (max-width: 580px) {
-.column {
-    width: 100%;
-    height: 100%;
-}
-}
-@media screen and (max-width: 350px) {
-.first:before,.last:before,.mail:before,.pass:before,.user:before{
-	display:none;
-}
-.input-field {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-.sld-selector{
-    padding-left: 5px;
-    padding-right: 5px;
-}
-.sld-selector a{
-	width:100%;
-  z-index: 1000;
-}
-.first:after, .last:after, .country-select:after, .r-pass:after, .mail:after {
-    content: " *";
-    color: red;
-    float: right;
-    margin-top: 15px;
-    margin-right: -14px;
-}
-}
-
-/*code for legendary login*/
-.sld-selector .normal
-{
-    font-size: 17px;
-    color: #000;
-	text-decoration: double underline red;
-}
-
-/*--------------------------------------------------->
-ANIMATION DATA
------------------------------------------------------>
-*/
-/*Bounce Effect*/
-.branding-logo,.columns{
-	animation-name: bounce;
-	-webkit-animation-name: bounce;	animation-duration: 1.0s;
-	-webkit-animation-duration: 1.0s;animation-timing-function: ease;
-	-webkit-animation-timing-function: ease;
-	transform-origin: 50% 100%;
-	-ms-transform-origin: 50% 100%;
-	-webkit-transform-origin: 50% 100%;
-}
-@keyframes bounce {0% {
-	transform: translateY(0%) scaleY(0.6);}60%{
-	transform: translateY(-20%) scaleY(1.1);}70%{
-		transform: translateY(0%) scaleY(0.95) scaleX(1.05);}80%{
-			transform: translateY(0%) scaleY(1.05) scaleX(1);}	90%{
-				transform: translateY(0%) scaleY(0.95) scaleX(1);}100%{
-					transform: translateY(0%) scaleY(1) scaleX(1);
-					}
-}
-@-webkit-keyframes bounce {0% {
-	-webkit-transform: translateY(0%) scaleY(0.6);}60%{
-		-webkit-transform: translateY(-100%) scaleY(1.1);}70%{
-			-webkit-transform: translateY(0%) scaleY(0.95) scaleX(1.05);}80%{
-				-webkit-transform: translateY(0%) scaleY(1.05) scaleX(1);}	90%{
-					-webkit-transform: translateY(0%) scaleY(0.95) scaleX(1);}100%{
-						-webkit-transform: translateY(0%) scaleY(1) scaleX(1);
-						}
-}
-/*PullDown Effect*/
-.sld-selector a,.log-sub input,.loger{
-	animation-name: pullDown;
-	-webkit-animation-name: pullDown;
-	animation-duration: 1.1s;
-	-webkit-animation-duration: 1.1s;
-	animation-timing-function: ease-out;
-	-webkit-animation-timing-function: ease-out;
-	transform-origin: 50% 0%;
-	-ms-transform-origin: 50% 0%;
-	-webkit-transform-origin: 50% 0%;
-	outline: none;
-	margin-bottom: 20px;
-}
-@keyframes pullDown {
-0% {transform: scaleY(0.1);}40% {
-	transform: scaleY(1.02);}60% {
-		transform: scaleY(0.98);}80% {
-			transform: scaleY(1.01);}100% {
-				transform: scaleY(0.98);}80% {
-					transform: scaleY(1.01);}100% {
-						transform: scaleY(1);
-						}
-}
-@-webkit-keyframes pullDown {0% {
-	-webkit-transform: scaleY(0.1);}40% {
-		-webkit-transform: scaleY(1.02);}60% {
-			-webkit-transform: scaleY(0.98);}80% {
-				-webkit-transform: scaleY(1.01);}100% {
-					-webkit-transform: scaleY(0.98);}80% {
-						-webkit-transform: scaleY(1.01);}100% {
-							-webkit-transform: scaleY(1);
-							}
-}
-/*StretchRight Start*/
-.ani::before, .input-identity{
-	animation-name: stretchRight;
-	-webkit-animation-name: stretchRight;
-	animation-duration: 1.5s;
-	-webkit-animation-duration: 1.5s;
-	animation-timing-function: ease-out;
-	-webkit-animation-timing-function: ease-out;
-	transform-origin: 0% 0%;
-	-ms-transform-origin: 0% 0%;
-	-webkit-transform-origin: 0% 0%;
-}
-@keyframes stretchRight {0% {
-	transform: scaleX(0.3);}40% {
-		transform: scaleX(1.02);}60% {
-			transform: scaleX(0.98);}80% {
-				transform: scaleX(1.01);}100% {
-					transform: scaleX(0.98);}80% {
-						transform: scaleX(1.01);}100% {
-							transform: scaleX(1);
-							}
-}
-@-webkit-keyframes stretchRight {0% {
-	-webkit-transform: scaleX(0.3);}40% {
-		-webkit-transform: scaleX(1.02);}60% {
-			-webkit-transform: scaleX(0.98);}80% {
-				-webkit-transform: scaleX(1.01);}100% {
-					-webkit-transform: scaleX(0.98);}80% {
-						-webkit-transform: scaleX(1.01);}100% {
-							-webkit-transform: scaleX(1);
-							}
-}
-
-.hold-pswd-box{
-  float:left;
-}
-
-.pswd-hold-txt
-{
-	color: rgb(255, 102, 0);
-}
-
-/*code for image slider*/
-
-.inner-box{
-  height:100%;
-  width: 100%;
-  display: flex;
-}
-
-@keyframes refresh13 {
-  0% {
-    background-position: calc(-100px);
-  }
-  40%, 100% {
-    background-position: 320px;
-  }
-}
-
-@keyframes goldbg {
-  0% {
-    background-image: #89e9ff;
-  }
-  40% {
-    background-image: #89e9ff;
-  }
-  100% {
-    background-image: #42d1f1;
-  }
-}
-
-.slide-ele{
-  width:100%;
-  height:100%;
-  flex-shrink: 0;
-  background-image: linear-gradient(90deg, #b78846 0px, #ffcb9a 30px, #624925 60px);
-  background-size: calc(420px + 100px);
-  animation: refresh13 1s infinite ease-out;
-}
-.slide-pic{
-  width:100%;
-  height:100%;
-}
-
-.dots-box{
-  position: absolute;
-  bottom:45px;
-  left:50%;
-  transform: translateX(-50%);
-}
-
-.dots{
-  margin: 0 4px;
-  width:8px;
-  height:8px;
-  display:inline-block;
-  border-radius: 100%;
-  background-color: #fff;
-  
-}
- .dots-active{
-  width: 28px;
-  background: #79a5f1;
-  border-radius: 5px;
-}
-
-/*code for transparet mving boxes*/
-.box13 {
-  position: absolute;
-}
-.box13 .square13 {
-  position: absolute;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 15px;
-  animation: square13 10s linear infinite;
-  animation-delay: calc(-1s * var(--i));
-}
-@keyframes square13 {
-  0%, 100% {
-    transform: translateY(-20px);
-  }
-  50% {
-    transform: translateY(20px);
-  }
-}
-.box13 .square13:nth-child(1) {
-  width: 100px;
-  height: 100px;
-  background: #89e9ff url(https://t4.ftcdn.net/jpg/01/40/55/53/360_F_140555390_3sApuMHRViRot696y0c76SHDQ13wBq95.jpg);
-  animation: refresh13 1s infinite ease-out;
-  top: 65px;
-  right: -45px;
-  z-index: -10;
-}
-.box13 .square13:nth-child(2) {
-  width: 150px;
-  height: 150px;
-  background: #89e9ff url(https://media.istockphoto.com/photos/green-precious-gem-closeup-picture-id483317407?k=6&m=483317407&s=612x612&w=0&h=fmKwGvPycgkqe85ma5g_kCBejA5yy23DZcND0QAJNcM=);
-  animation: refresh13 1s infinite ease-out;
-  top: 25px;
-  left: 115px;
-  z-index: 2;
-}
-.box13 .square13:nth-child(3) {
-  width: 60px;
-  height: 60px;
-  background: #89e9ff url(https://t3.ftcdn.net/jpg/01/80/42/34/360_F_180423436_zNNzuzuXFr8v2uzyurYoNdpVOnkCjUyY.jpg);
-  animation: refresh13 1s infinite ease-out;
-  bottom: 105px;
-  right: -25px;
-  z-index: 2;
-}
-.box13 .square13:nth-child(4) {
-  width: 50px;
-  height: 50px;
-  background: #89e9ff url(https://media.istockphoto.com/videos/crystal-clear-christmas-background-video-id815609692?s=640x640);
-  animation: refresh13 1s infinite ease-out;
-  bottom: 105px;
-  left: 135px;
-}
-.box13 .square13:nth-child(5) {
-  width: 40px;
-  background: #89e9ff url(https://media.istockphoto.com/photos/abstract-diamond-crystal-ruby-mineral-gemstone-stack-bixbite-topaz-picture-id1137767581?k=6&m=1137767581&s=612x612&w=0&h=8-otFhyZGT7spofk8oQq_CAbqPUKfMb2W33ShLeq8po=);
-  animation: refresh13 1s infinite ease-out;
-  height: 40px;
-  border-radius: 50%;
-  top: 285px;
-  left: 145px;
-  z-index: 10;
-}
-.box13 .square13:nth-child(6) {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: #89e9ff url(https://wallpaperaccess.com/full/1854925.jpg);
-  animation: refresh13 1s infinite ease-out;
-  top: 300px;
-  right: -45px;
-  z-index: 2;
-}
-
-/*code for bubbles*/
-.bg-bubbles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.bg-bubbles li {
-  position: absolute;
-  list-style: none;
-  display: block;
-  width: 40px;
-  height: 40px;
-  background-color: rgb(240, 181, 98);
-  bottom: 0px;
-  border-radius: 150px;
-  -webkit-animation: square 50s infinite;
-  animation: square 5s infinite;
-  -webkit-transition-timing-function: linear;
-  transition-timing-function: linear;
-}
-.bg-bubbles li:nth-child(1) {
-  left: 10%;
-  z-index: 1;
-}
-.bg-bubbles li:nth-child(2) {
-  left: 20%;
-  width: 80px;
-  height: 80px;
-  animation-delay: 0s;
-  animation-duration: 7s;
-}
-.bg-bubbles li:nth-child(3) {
-  left: 25%;
-  animation-delay: 4s;
-  z-index: 1;
-
-}
-.bg-bubbles li:nth-child(4) {
-  left: 40%;
-  width: 60px;
-  height: 60px;
-  animation-duration: 22s;
-  background-color: #ff95003a;
-}
-.bg-bubbles li:nth-child(5) {
-  left: 70%;
-  z-index: 1;
-
-}
-.bg-bubbles li:nth-child(6) {
-  left: 80%;
-  width: 12px;
-  height: 12px;
-  animation-delay: 30s;
-  background-color: #ff950067;
-}
-.bg-bubbles li:nth-child(7) {
-  left: 32%;
-  width: 160px;
-  height: 160px;
-  animation-delay: 7s;
-  z-index: 1;
-}
-.bg-bubbles li:nth-child(8) {
-  left: 55%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 15s;
-  animation-duration: 40s;
-}
-.bg-bubbles li:nth-child(9) {
-  left: 25%;
-  width: 10px;
-  height: 10px;
-  animation-delay: 2s;
-  animation-duration: 40s;
-  background-color: #ff950056;
-  z-index: 1;
-}
-.bg-bubbles li:nth-child(10) {
-  left: 90%;
-  width: 160px;
-  height: 160px;
-  animation-delay: 11s;
-}
-.bg-bubbles li:nth-child(11) {
-  left: 25%;
-  width: 60px;
-  height: 60px;
-  animation-delay: 2s;
-  z-index: 1;
-}
-@-webkit-keyframes square {
-  0% {
-    transform: translateY(0);
-    background-color: rgba(255, 255, 255, 0);
-  }
-  100% {
-    transform: translateY(-100px);
-    background-color: #ff9500bd;
-  }
-}
-@keyframes square {
-  0% {
-    transform: translateY(0);
-    background-color: #ff9500ee;
-  }
-  100% {
-    transform: translateY(-500px);
-    background-color: rgba(255, 255, 255, 0);
-  }
-}
-
-@keyframes circle{
-    0%{transform: rotate(0deg);}
-    100%{transform: rotate(360deg);}
-}
-@-webkit-keyframes circle{
-    0%{transform: rotate(0deg);}
-    100%{transform: rotate(360deg);}
-}
-
-@keyframes dots{
-    0%{transform: rotate(0deg);}
-    100%{transform: rotate(360deg);}
-}
-@-webkit-keyframes dots{
-    0%{transform: rotate(0deg);}
-    100%{transform: rotate(360deg);}
-}
-@keyframes flair{
-    0%{transform: rotate(360deg);}
-    100%{transform: rotate(0deg);}
-}
-@-webkit-keyframes flair{
-    0%{transform: rotate(360deg);}
-    100%{transform: rotate(0deg);}
-}
-
-/*style for phone responsiveness */
-@media (max-width: 668px) 
-{
-  
-}
-
-/*style for phone responsiveness */
-@media (max-width: 668px) 
-{
-	/*code for image slider*/
-	.outer-box{
-		position: absolute;
-		border-radius: 10px 10px 10px 10px;
-		top: 4%;
-		left: 2%;
-		height: 100%;
-		width: 42%;
-		overflow: hidden;
-		z-index: -10;
-	}
-  	/*code for login, register ,recover, and help box*/
-	.middle{
-		min-height: 100vh;
-		position: relative;
-		right: 470px;
-		top: 20px;
-	}
-	.column {
-		margin: 0 auto;
-		width: 320px;
-		height: 520px;
-		box-shadow: 0 10px 20px 0 rgba(255, 255, 255, 0.685);
-	}
-	/*code for gem placed mving boxes*/
-	.box13 .square13 {
-		position: fixed;
-	}
-
-	.box13 .square13:nth-child(1) {
-		  width: 80px;
-		  height: 80px;
-		  top: 40px;
-		  right: 10px;
-		  z-index: 102;
-	}
-	.box13 .square13:nth-child(2) {
-		  width: 80px;
-		  height: 80px;
-		  top: 10px;
-		  left: 10px;
-		  z-index: 102;
-	}
-	.box13 .square13:nth-child(3) {
-		  width: 60px;
-		  height: 60px;
-		  bottom: 30px;
-		  right: -20px;
-	}
-	.box13 .square13:nth-child(4) {
-		  width: 50px;
-		  height: 50px;
-		  bottom: 105px;
-	}
-	.box13 .square13:nth-child(5) {
-		  width: 50px;
-		  height: 50px;
-		  left: 4px;
-      z-index: 0;
-	}
-	.box13 .square13:nth-child(6) {
-		  width: 85px;
-		  height: 85px;
-		  top: 255px;
-		  right: -95px;
-		  z-index: 2;
-	}
-	/*code for bubbles*/
-	.bg-bubbles {
-		  position: fixed;
-		  top: 0;
-		  left: 0;
-		  width: 100%;
-		  height: 100%;
-	}
-	.bg-bubbles li {
-		  position: absolute;
-		  list-style: none;
-		  display: block;
-		  width: 40px;
-		  height: 40px;
-		  background-color: rgba(255, 255, 255, 0.15);
-		  bottom: 0px;
-		  border-radius: 150px;
-	}
-	.bg-bubbles li:nth-child(1) {
-		  left: 10%;
-		  z-index: 2;
-	}
-	.bg-bubbles li:nth-child(2) {
-		  left: 20%;
-		  width: 80px;
-		  height: 80px;
-		  animation-delay: 0s;
-		  animation-duration: 7s;
-	}
-	.bg-bubbles li:nth-child(3) {
-		  left: 25%;
-		  animation-delay: 4s;
-		  z-index: 2;
-	}
-	.bg-bubbles li:nth-child(4) {
-		  left: 40%;
-		  width: 60px;
-		  height: 60px;
-		  animation-duration: 22s;
-		  background-color: rgba(255, 255, 255, 0.25);
-	}
-	.bg-bubbles li:nth-child(5) {
-		  left: 70%;
-		  z-index: 2;
-	}
-	.bg-bubbles li:nth-child(6) {
-		  left: 80%;
-		  width: 12px;
-		  height: 12px;
-		  animation-delay: 30s;
-		  background-color: rgba(255, 255, 255, 0.3);
-	}
-	.bg-bubbles li:nth-child(7) {
-		  left: 32%;
-		  width: 160px;
-		  height: 160px;
-		  animation-delay: 7s;
-	}
-	.bg-bubbles li:nth-child(8) {
-		  left: 55%;
-		  width: 20px;
-		  height: 20px;
-		  animation-delay: 15s;
-		  animation-duration: 40s;
-	}
-	.bg-bubbles li:nth-child(9) {
-		  left: 25%;
-		  width: 10px;
-		  height: 10px;
-		  animation-delay: 2s;
-		  animation-duration: 40s;
-		  background-color: rgba(255, 255, 255, 0.3);
-		  z-index: 2;
-	}
-	.bg-bubbles li:nth-child(10) {
-		  left: 90%;
-		  width: 160px;
-		  height: 160px;
-		  animation-delay: 11s;
-		  z-index: -100;
-	}
-	.bg-bubbles li:nth-child(11) {
-		  left: 25%;
-		  width: 60px;
-		  height: 60px;
-		  animation-delay: 2s;
-		  z-index: 2;
-	}
-	.footer_place {
-		margin-top: -30px;
-	}
-	.hideit {
-		opacity: 0;
-	}
-	.scroll-hidden {
-		height: 280px;
-	}
-	/*Footer Shift*/
-	.login-footer {
-		    margin-top: -20px;
-	}
-  .gof1
-  {
-    opacity: 0;
-  }
-  .gof2
-  {
-    opacity: 0;
-  }
-  .gof3
-  {
-    opacity: 0;
-  }
-  .gof4
-  {
-    opacity: 0;
-  }
-  body {
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
-  
-}
-
-</style>
-</head>
-<body>
-<div class="box13">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="" dir="" xmlns:fb="https://www.facebook.com/2008/fbml">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <title>Vidyamandir</title>
+        <meta property="fb:app_id" content=""/>
+        <meta property="fb:admins" content=""/>
+        <meta property="og:title" content=""/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="http://online.vidyamandir.com/test_collection/29321116/Attempted/quiz/29306314"/>
+        <meta property="og:image" content=""/>
+        <meta property="og:site_name" content="Vidyamandir"/>
+        <meta property="og:description" content="Watched "/>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+        <meta name="KEYWORDS" content=""/>
+        <meta name="DESCRIPTION" content=""/>
+        <meta name="LANGUAGE" content="ENGLISH"/>
+        <meta name="ROBOTS" content="NOINDEX, NOFOLLOW"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="refresh" content="36000;" />
+<script type="text/javascript">window.CKEDITOR_BASEPATH = "/modules/ckeditor/ckeditor/";</script>
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_SVG">MathJax.Hub.Config({
+                jax: ["input/TeX","input/MathML","input/AsciiMath","output/HTML-CSS","output/NativeMML", "output/PreviewHTML"],
+                extensions: ["tex2jax.js","mml2jax.js","asciimath2jax.js","MathMenu.js","MathZoom.js", "fast-preview.js", "AssistiveMML.js", "a11y/accessibility-menu.js"],
+                TeX: {
+                  extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+                }
+              });</script>
+<link rel="shortcut icon" href="/sites/online.vidyamandir.com/files/testprep_favicon.ico" type="image/x-icon" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic' rel='stylesheet' type='text/css' />
+        <script>
+            var artist = "Trainer";
+            var video = "Content";
+            var collection = "Topic";
+            var static_server = 'https://static.online.vidyamandir.com';
+            var src_upload = 'upload';
+            var src_youtube = 'youtube';
+            var video_menu = 'Content';
+            var video_menu_url = 'content';
+            var artist_menu = 'Trainer';
+            var artist_menu_url = 'trainer';
+            var playlist_const = 'playlist';
+            var collection_menu = 'Topic';
+            var collection_menu_url = 'topic';
+            var course_menu_url = 'chapter';
+            var quiz_url = 'quiz';
+            domain = "https://online.vidyamandir.com";
+            var group_widget_type = "1";
+            var user_widget_type = "1";
+            var task = "task";
+            var category_menu_url = 'Subject';
+            var category_url = "subject";
+            var certificate_url = "badge";
+            var assignment_menu_url = 'activity';
+            var assignment_menu = 'Activity';
+            var index_title = "INDEX";
+            var JWPLAYER_SWF_PATH = "http://videos.learning1.tribytetech.com/jwplayer.flash.swf?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL3ZpZGVvcy5sZWFybmluZzEudHJpYnl0ZXRlY2guY29tL2p3cGxheWVyLmZsYXNoLnN3ZiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTk1NDE1OTQ0NH19fV19&Signature=W4IDXRM79gf~mHqFwl5zdQePGIH-MMdNAHpNniiCu8f5rPcUKND7-eNG4OTTBSiHuC2W~nf~05ln4OV9YBq0f2b881Lb~zDiHaoMuYjJL5b4jhsol7vct4Y~-P86NiNDH8SumaMQprnchhS8XYTLJY9wEoyqXMq9s3DgQ9QgE~M_&Key-Pair-Id=APKAID56YXJX6U7XGA5A";
+            var JWPLAYER_HTML5JS_PATH = "http://videos.learning1.tribytetech.com/jwplayer.html5.js?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL3ZpZGVvcy5sZWFybmluZzEudHJpYnl0ZXRlY2guY29tL2p3cGxheWVyLmh0bWw1LmpzIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxOTU0MTU5NDQ0fX19XX0_&Signature=OhY25iAoqi94E1be33AF6BTT6rHh2qI1F3Ph0A5hn77EJb3ONmHK-C-DJ9lV7FoCkskuBEWTeZyQGBpwgkR-ZWcvTtLaYSRjpkxwq1LhPqui2f6LITcdiQn3R1Pp5qYMaavU~qIKEWQLgNISNAi0effCRZtUTMY6DwcYZRlVAcA_&Key-Pair-Id=APKAID56YXJX6U7XGA5A";
+            var promo_duration = "300";
+            var certificate_vocab_id = "8";
+            var forum_expert_text = "Expert";
+            var portal_url = "CR_PORTAL_URL";
+            var group = "Group";
+            var forum = "Forum"
+        </script>
+        <link type="text/css" rel="stylesheet" media="all" href="https://static.online.vidyamandir.com/sites/online.vidyamandir.com/css/css_81d940ff2659199a9da972e85dea047d1656832215.css" />
+<script type="text/javascript" src="https://static.online.vidyamandir.com/sites/online.vidyamandir.com/js/js_b41d46b05f119da06b6d80c5f3a96ffb1656832215.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "\/", "hide_submit": { "selector": ".hide_js:not(.hide-submit-exclude)", "mode": "hide", "keypress": "0", "dbg": false, "message": "\u003cp class=\"hide_submit\"\u003e\u003cimg src=\"\/modules\/hide_submit\/images\/loader.gif\" alt=\"\" title=\"\" \/\u003e\u0026nbsp; Please wait... \u003c\/p\u003e", "image": "\/modules\/hide_submit\/images\/loader.gif" }, "og": { "group_context": { "nid": "25678950", "title": "XII-Offline-2023", "type": "group" } } });
+//--><!]]>
+</script>
+    </head>
+        <body  class="page hidden vidyamandir  student testprep online_vidyamandir_com" id="domain_Vidyamandir">
+         
+<script>
+    var loginUri = '';
+    var embedResChange = 1;
+    var enable_continuous_play = 0;
+    var quiz_url='quiz';
+    var quiz_title='Quiz';
+    var quiz_next = "Save & Continue";
+    var quiz_leave = "Mark for Review";
+    var quiz_clear_response = "Clear Response";
+    var quiz_finish = "Finish";
+    var quiz_submit = "Submit";
+    var domain = "https://online.vidyamandir.com";
+    var host_name = "online.vidyamandir.com";
+    var language_id = "843";
+    var client_name= "online-vidyamandir-com";
+    var group_widget_type = "1";
+    var user_widget_type = "1";
+    var use_static_ad_type = 1;
+    var current_theme= "testprep";
+    var task_title = "My Tasks";
+    var task_list_url = "task/list";
+    var unsubscribed_message = "You have not bought this portion of the course. <br/><br/><a href='http://ischolareducation.com/courses/ischolar-i30/' target='_blank'><div class='button'>Buy now</div></a>";
+    var books_not_available = "No books available for this Chapter";
+    var book_unsubscribed_message = "You have not bought this portion of the course.";
+    var group_button_type = "checkbox";
+    var public_group_id = "155534";
+    var loggedin_group_id = "157068";
+    var artist = "Trainer";
+    var video = "Content";
+    var collection = "Topic";
+    var jukebox = "JUKEBOX_TEXT";
+    var src_upload = "upload";
+    var src_youtube = "youtube";
+    var use_collection_youtubesearch = "";
+    var Fullvideo = "AD_FULLVIDEO";
+    var dailog_height = '515';
+    var dailog_width = '845px';
+    var iframe_height = '500px';
+    var iframe_width = '845px';
+    var dailog_med_height = '515';
+    var dailog_med_width = '700px';
+    var iframe_med_height = '478px';
+    var iframe_med_width = '700px';
+    var dailog_sm_height = '575';
+    var dailog_sm_width = '570px';
+    var iframe_sm_height = '535px';
+    var iframe_sm_width = '555px';
+    var live_channel = 'Live Session';
+    var find_video = 'Find Content';
+    var replace_video = 'Replace Content';
+    var video_menu = 'Content';
+    var video_menu_url = 'content';
+    var artist_menu = 'Trainer';
+    var artist_menu_url = 'Trainer';
+    var collection_menu = 'Topic';
+    var collection_menu_url = 'topic';
+    var playlist_const = "playlist";
+    var static_server = "https://static.online.vidyamandir.com";
+    var lang = "";
+    var course = "Chapter";
+    var course_url = "Chapter";
+    var task = "task";
+    var category_widget_type = "checkboxes";
+    var category_menu_url = 'Subject';
+    var category_url = "subject";
+    var category_id = "3"
+    var certificate_check = false;
+    var loggedin_id = "157068";
+    var public_id = "155534";
+    var location_menu_url = 'location';
+    var location_url = "Location";
+    var cookie_domain = "online.vidyamandir.com";
+    var domain_all_lang_id= "DOMAIN_ALL_LANGUAGE_ID";
+    var prerequisite_message = "Prerequisite Chapters are not completed. Please complete the prerequisites chapters to get this enabled.";
+    var sequential_message = "Learning material needs to be completed in a sequence. \nPlease complete all the previous learning materials to access this.";
+    var category_sequential_message = "There are multiple subjects which should be completed before starting this subject.";
+    var testseries_reattempt_message = "You are already certified. You cannot attempt it once again.";
+    var testseries_maxattempt_message = "You have already completed maximum number of attempts. You cannot attempt it once again.";
+    var webinar = "liveclass";
+    var webinar_title = "Live Class";
+    var reviewer_assignment_dialog_title = "Provide Feedback";
+    var interaction_log = "Interaction Log";
+    var remarks = "Remarks";
+    var course_menu_url = 'chapter';
+    var certificate_vocab_id = "8";
+    var test_collection_url = "test_collection";
+    var certificate_manu_url = "badge";
+    var legend_count = "21";
+    var assignment_url = "activity"
+    var assignment_dialog_width = "700";
+    var assignment_dialog_height = "400";
+    var cr_certificate = "Badge";
+    var static_top_menu = "false";
+    var show_public_video = 1;
+    var public_video_time = 180;
+    var webinar_custom_provider = "webex";
+    var current_language = "";
+    var current_country = "";
+    var locale_url = 0;
+    var quiz_previous = "Back";
+    var domain_language_id = 843;
+    var is_admin = "";
+    var enable_mathjax = "ENABLE_MATHJAX";
+    var portal_domain = "CR_PORTAL_URL";
+    var status_completed = "Completed";
+    var status_expired = "Expired";
+    var status_pending = "Pending";
+    var status_not_started = "Upcoming";
+    var public_video_message = '';
+</script>
+            <script>
+            enableAdAllVideos = 0;
+            var videoAdDefaultSettings = {
+                "skipAd": {
+                    "enabled": 0                },
+                schedule: [
+                            {
+                               position: 'pre-roll',
+                               startTime : '00:00:00',
+                               tag : ''
+                            }
+                        ]            };
+        </script>
     
-  <div class="square13" style="--i:0;"></div>
-  <div class="square13" style="--i:1;"></div>
-  <div class="square13" style="--i:2;"></div>
-  <div class="square13" style="--i:3;"></div>
-  <div class="square13" style="--i:4;"></div>
-  <div class="square13" style="--i:5;"></div>
-  
-  <ul class="bg-bubbles">
-	<li></li>
-   <li></li>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
-	<li></li>
-  </ul>
+    <script> var lang = ''; 
+    
+   </script>
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171062342-1"></script>-->
+<!--    <script>
+
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag(){dataLayer.push(arguments);}
+
+      gtag('js', new Date());
 
 
 
-  <div class="middle">
-		<div class="column">
-<!--Logo & Site Title-->
-			<a class="branding-logo logo"></a>
-			<p class="branding-title">Schicordance</p>
-<!--Slider Start-->
-			<div class="login-selection">
-				<p id="login"></p> 
-				<p id="register"></p>
-				<p id="recover"></p>
-				<p id="help"></p>
-				<div class="slide">
-<!--Login Contents Start-->	
-					<div class="scroll-hidden">
-						<p class="input-identity">Login</p>
-					<div class="input-field">
-						<form action="/action_page.php">
-							<p class="ani user"><input type="text" class="loger username" placeholder="Username or Email Address" id="uname" name="uname" value="" autofocus="" autocomplete="off" required></p>
-							<p class="ani pass"><input type="password" class="loger password" placeholder="Password" id="pname" name="pname" value="" autofocus="" autocomplete="off" required></p>
-							<p class="ani two-step"><input type="text" class="loger two-factor" placeholder="Wizard spell code" id="tfname" name="tfname" value="" autofocus="" autocomplete="off" ></p>
-							
-							<br>
-							<div class="hold-pswd-box">
-							   <input type="checkbox" name="pswd-memory" id="pswd-hold">
-							   <label class="pswd-hold-txt" >Remember me</label>
-							</div>
-							<br>
-							<p class="blu-b log-sub"><input type="submit" value="Login?"></p>
-						</form>
-					</div>	
-					</div>
-<!--Login Contents End-->
+      gtag('config', 'UA-171062342-1');
 
-<!--Register Contents Start-->
-					<div class="scroll-hidden">
-						<p class="input-identity">Register</p>
-						
-					<div class="input-field">
-						<form action="/action_page.php">
-							<p class="ani first"><input type="text" class="loger first-name" placeholder="First Name" id="fname" name="fname" value="" autofocus="" autocomplete="off" required></p>
-							<p class="ani last"><input type="text" class="loger last-name" placeholder="Last Name" id="lname" name="lname" value="" autofocus="" autocomplete="off" required></p>
-							<p class="ani mail"><input type="text" class="loger email" placeholder="Email Address" id="ename" name="ename" value="" autofocus="" autocomplete="off" required></p>
-							<p class="ani r-pass"><input type="text" class="loger password" placeholder="Password (6 or more characters)" id="pname" name="pname" value="" autofocus="" autocomplete="off" required></p>
-							<p class="ani r-pass"><input type="text" class="loger password" placeholder="Confirm Password" id="rpcname" name="rpcname" value="" autofocus="" autocomplete="off" required></p>
-							<p class="ani phone"><input type="text" class="loger phone-number" placeholder="Phone Number" id="pnname" name="pnname" value="" autofocus="" autocomplete="off"></p>
-							<div class="country-select">		
-									<select class="country" name="country" class="form-control" placeholder="Country" required>
-									<option value="">Select Your Country</option>
-									<option value="Afghanistan">Afghanistan</option>
-									<option value="Åland Islands">Åland Islands</option>
-									<option value="Albania">Albania</option>
-									<option value="Algeria">Algeria</option>
-									<option value="American Samoa">American Samoa</option>
-									<option value="Andorra">Andorra</option>
-									<option value="Angola">Angola</option>
-									<option value="Anguilla">Anguilla</option>
-									<option value="Antarctica">Antarctica</option>
-									<option value="Antigua and Barbuda">Antigua and Barbuda</option>
-									<option value="Argentina">Argentina</option>
-									<option value="Armenia">Armenia</option>
-									<option value="Aruba">Aruba</option>
-									<option value="Australia">Australia</option>
-									<option value="Austria">Austria</option>
-									<option value="Azerbaijan">Azerbaijan</option>
-									<option value="Bahamas">Bahamas</option>
-									<option value="Bahrain">Bahrain</option>
-									<option value="Bangladesh">Bangladesh</option>
-									<option value="Barbados">Barbados</option>
-									<option value="Belarus">Belarus</option>
-									<option value="Belgium">Belgium</option>
-									<option value="Belize">Belize</option>
-									<option value="Benin">Benin</option>
-									<option value="Bermuda">Bermuda</option>
-									<option value="Bhutan">Bhutan</option>
-									<option value="Bolivia">Bolivia</option>
-									<option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-									<option value="Botswana">Botswana</option>
-									<option value="Bouvet Island">Bouvet Island</option>
-									<option value="Brazil">Brazil</option>
-									<option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
-									<option value="Brunei Darussalam">Brunei Darussalam</option>
-									<option value="Bulgaria">Bulgaria</option>
-									<option value="Burkina Faso">Burkina Faso</option>
-									<option value="Burundi">Burundi</option>
-									<option value="Cambodia">Cambodia</option>
-									<option value="Cameroon">Cameroon</option>
-									<option value="Canada">Canada</option>
-									<option value="Cape Verde">Cape Verde</option>
-									<option value="Cayman Islands">Cayman Islands</option>
-									<option value="Central African Republic">Central African Republic</option>
-									<option value="Chad">Chad</option>
-									<option value="Chile">Chile</option>
-									<option value="China">China</option>
-									<option value="Christmas Island">Christmas Island</option>
-									<option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
-									<option value="Colombia">Colombia</option>
-									<option value="Comoros">Comoros</option>
-									<option value="Congo">Congo</option>
-									<option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
-									<option value="Cook Islands">Cook Islands</option>
-									<option value="Costa Rica">Costa Rica</option>
-									<option value="Cote D'ivoire">Cote D'ivoire</option>
-									<option value="Croatia">Croatia</option>
-									<option value="Cuba">Cuba</option>
-									<option value="Cyprus">Cyprus</option>
-									<option value="Czech Republic">Czech Republic</option>
-									<option value="Denmark">Denmark</option>
-									<option value="Djibouti">Djibouti</option>
-									<option value="Dominica">Dominica</option>
-									<option value="Dominican Republic">Dominican Republic</option>
-									<option value="Ecuador">Ecuador</option>
-									<option value="Egypt">Egypt</option>
-									<option value="El Salvador">El Salvador</option>
-									<option value="Equatorial Guinea">Equatorial Guinea</option>
-									<option value="Eritrea">Eritrea</option>
-									<option value="Estonia">Estonia</option>
-									<option value="Ethiopia">Ethiopia</option>
-									<option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
-									<option value="Faroe Islands">Faroe Islands</option>
-									<option value="Fiji">Fiji</option>
-									<option value="Finland">Finland</option>
-									<option value="France">France</option>
-									<option value="French Guiana">French Guiana</option>
-									<option value="French Polynesia">French Polynesia</option>
-									<option value="French Southern Territories">French Southern Territories</option>
-									<option value="Gabon">Gabon</option>
-									<option value="Gambia">Gambia</option>
-									<option value="Georgia">Georgia</option>
-									<option value="Germany">Germany</option>
-									<option value="Ghana">Ghana</option>
-									<option value="Gibraltar">Gibraltar</option>
-									<option value="Greece">Greece</option>
-									<option value="Greenland">Greenland</option>
-									<option value="Grenada">Grenada</option>
-									<option value="Guadeloupe">Guadeloupe</option>
-									<option value="Guam">Guam</option>
-									<option value="Guatemala">Guatemala</option>
-									<option value="Guernsey">Guernsey</option>
-									<option value="Guinea">Guinea</option>
-									<option value="Guinea-bissau">Guinea-bissau</option>
-									<option value="Guyana">Guyana</option>
-									<option value="Haiti">Haiti</option>
-									<option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
-									<option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
-									<option value="Honduras">Honduras</option>
-									<option value="Hong Kong">Hong Kong</option>
-									<option value="Hungary">Hungary</option>
-									<option value="Iceland">Iceland</option>
-									<option value="India">India</option>
-									<option value="Indonesia">Indonesia</option>
-									<option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
-									<option value="Iraq">Iraq</option>
-									<option value="Ireland">Ireland</option>
-									<option value="Isle of Man">Isle of Man</option>
-									<option value="Israel">Israel</option>
-									<option value="Italy">Italy</option>
-									<option value="Jamaica">Jamaica</option>
-									<option value="Japan">Japan</option>
-									<option value="Jersey">Jersey</option>
-									<option value="Jordan">Jordan</option>
-									<option value="Kazakhstan">Kazakhstan</option>
-									<option value="Kenya">Kenya</option>
-									<option value="Kiribati">Kiribati</option>
-									<option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
-									<option value="Korea, Republic of">Korea, Republic of</option>
-									<option value="Kuwait">Kuwait</option>
-									<option value="Kyrgyzstan">Kyrgyzstan</option>
-									<option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
-									<option value="Latvia">Latvia</option>
-									<option value="Lebanon">Lebanon</option>
-									<option value="Lesotho">Lesotho</option>
-									<option value="Liberia">Liberia</option>
-									<option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
-									<option value="Liechtenstein">Liechtenstein</option>
-									<option value="Lithuania">Lithuania</option>
-									<option value="Luxembourg">Luxembourg</option>
-									<option value="Macao">Macao</option>
-									<option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
-									<option value="Madagascar">Madagascar</option>
-									<option value="Malawi">Malawi</option>
-									<option value="Malaysia">Malaysia</option>
-									<option value="Maldives">Maldives</option>
-									<option value="Mali">Mali</option>
-									<option value="Malta">Malta</option>
-									<option value="Marshall Islands">Marshall Islands</option>
-									<option value="Martinique">Martinique</option>
-									<option value="Mauritania">Mauritania</option>
-									<option value="Mauritius">Mauritius</option>
-									<option value="Mayotte">Mayotte</option>
-									<option value="Mexico">Mexico</option>
-									<option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
-									<option value="Moldova, Republic of">Moldova, Republic of</option>
-									<option value="Monaco">Monaco</option>
-									<option value="Mongolia">Mongolia</option>
-									<option value="Montenegro">Montenegro</option>
-									<option value="Montserrat">Montserrat</option>
-									<option value="Morocco">Morocco</option>
-									<option value="Mozambique">Mozambique</option>
-									<option value="Myanmar">Myanmar</option>
-									<option value="Namibia">Namibia</option>
-									<option value="Nauru">Nauru</option>
-									<option value="Nepal">Nepal</option>
-									<option value="Netherlands">Netherlands</option>
-									<option value="Netherlands Antilles">Netherlands Antilles</option>
-									<option value="New Caledonia">New Caledonia</option>
-									<option value="New Zealand">New Zealand</option>
-									<option value="Nicaragua">Nicaragua</option>
-									<option value="Niger">Niger</option>
-									<option value="Nigeria">Nigeria</option>
-									<option value="Niue">Niue</option>
-									<option value="Norfolk Island">Norfolk Island</option>
-									<option value="Northern Mariana Islands">Northern Mariana Islands</option>
-									<option value="Norway">Norway</option>
-									<option value="Oman">Oman</option>
-									<option value="Pakistan">Pakistan</option>
-									<option value="Palau">Palau</option>
-									<option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
-									<option value="Panama">Panama</option>
-									<option value="Papua New Guinea">Papua New Guinea</option>
-									<option value="Paraguay">Paraguay</option>
-									<option value="Peru">Peru</option>
-									<option value="Philippines">Philippines</option>
-									<option value="Pitcairn">Pitcairn</option>
-									<option value="Poland">Poland</option>
-									<option value="Portugal">Portugal</option>
-									<option value="Puerto Rico">Puerto Rico</option>
-									<option value="Qatar">Qatar</option>
-									<option value="Reunion">Reunion</option>
-									<option value="Romania">Romania</option>
-									<option value="Russian Federation">Russian Federation</option>
-									<option value="Rwanda">Rwanda</option>
-									<option value="Saint Helena">Saint Helena</option>
-									<option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-									<option value="Saint Lucia">Saint Lucia</option>
-									<option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-									<option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
-									<option value="Samoa">Samoa</option>
-									<option value="San Marino">San Marino</option>
-									<option value="Sao Tome and Principe">Sao Tome and Principe</option>
-									<option value="Saudi Arabia">Saudi Arabia</option>
-									<option value="Senegal">Senegal</option>
-									<option value="Serbia">Serbia</option>
-									<option value="Seychelles">Seychelles</option>
-									<option value="Sierra Leone">Sierra Leone</option>
-									<option value="Singapore">Singapore</option>
-									<option value="Slovakia">Slovakia</option>
-									<option value="Slovenia">Slovenia</option>
-									<option value="Solomon Islands">Solomon Islands</option>
-									<option value="Somalia">Somalia</option>
-									<option value="South Africa">South Africa</option>
-									<option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
-									<option value="Spain">Spain</option>
-									<option value="Sri Lanka">Sri Lanka</option>
-									<option value="Sudan">Sudan</option>
-									<option value="Suriname">Suriname</option>
-									<option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
-									<option value="Swaziland">Swaziland</option>
-									<option value="Sweden">Sweden</option>
-									<option value="Switzerland">Switzerland</option>
-									<option value="Syrian Arab Republic">Syrian Arab Republic</option>
-									<option value="Taiwan, Province of China">Taiwan, Province of China</option>
-									<option value="Tajikistan">Tajikistan</option>
-									<option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
-									<option value="Thailand">Thailand</option>
-									<option value="Timor-leste">Timor-leste</option>
-									<option value="Togo">Togo</option>
-									<option value="Tokelau">Tokelau</option>
-									<option value="Tonga">Tonga</option>
-									<option value="Trinidad and Tobago">Trinidad and Tobago</option>
-									<option value="Tunisia">Tunisia</option>
-									<option value="Turkey">Turkey</option>
-									<option value="Turkmenistan">Turkmenistan</option>
-									<option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
-									<option value="Tuvalu">Tuvalu</option>
-									<option value="Uganda">Uganda</option>
-									<option value="Ukraine">Ukraine</option>
-									<option value="United Arab Emirates">United Arab Emirates</option>
-									<option value="United Kingdom">United Kingdom</option>
-									<option value="United States">United States</option>
-									<option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
-									<option value="Uruguay">Uruguay</option>
-									<option value="Uzbekistan">Uzbekistan</option>
-									<option value="Vanuatu">Vanuatu</option>
-									<option value="Venezuela">Venezuela</option>
-									<option value="Viet Nam">Viet Nam</option>
-									<option value="Virgin Islands, British">Virgin Islands, British</option>
-									<option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
-									<option value="Wallis and Futuna">Wallis and Futuna</option>
-									<option value="Western Sahara">Western Sahara</option>
-									<option value="Yemen">Yemen</option>
-									<option value="Zambia">Zambia</option>
-									<option value="Zimbabwe">Zimbabwe</option>
-								</select>							
-							</div>							
+    </script>-->
+		<script id="intellaops_script" src="https://ui.aibot.vidyamandir.com/bot/lex-web-ui-loader.min.js?configName=vmc_lms_cf" async ></script>
+	
 
-							<div class="terms-info">
-								<p>By clicking
-								<strong class="ter-reg">Register</strong>, you agree to "
-								<strong><b>Website Branding</b></strong>"</br> 
-								<a href="https://example.com/">
-								<strong>User Agreement</strong></a>, 
-								<a href="https://example.com/">
-								<strong>Privacy Policy</strong></a>, and 
-								<a href="https://example.com/">
-								<strong>Cookie Policy</strong>.
-								</a>
-								</p>
-							</div>			
-							<p class="reg-b log-sub"><input type="submit" value="Register?"></p>
-						</form>
-					</div>
-					</div>
-<!--Register Contents End-->
-
-<!--Recover Contents Start-->
-					<div class="scroll-hidden">
-						<p class="input-identity">Recover</p>
-					<div class="input-field">
-						<form action="/action_page.php">
-							<p class="ani user"><input type="text" class="loger username" placeholder="Username or Email Address" id="urname" name="urname" value="" autofocus="" autocomplete="off" required></p>
-							<p class="ani phone"><input type="text" class="loger phone-number" placeholder="Phone Number" id="pnrname" name="pnrname" value="" autofocus="" autocomplete="off" required></p> 
-							<p class="ani red-b log-sub"><input type="submit" value="Recover?"></p>
-						</form>
-					</div>
-					</div>
-<!--Recover Contents End-->
-
-
-<!--Help Contents Start-->
-					<div class="scroll-hidden">
-						<p class="input-identity">Help</p>
-					<div class="input-field-help">
-						<div class="help-column">
-							<p><strong>Login</strong></p>
-								<ol>
-									<li>Make sure you have entered your email/user name &amp; password correctly.</li>
-								</ol>
-							<p><strong>Create Account</strong></p>
-								<ol>
-									<li>Make sure you have entered all the information in the correct 
-									<p class="help-star">*</p> required input fields.</li>
-									<li>Do not use weak passwords.</li>
-								</ol>
-							<p><strong>Never got an email?</strong></p>
-								<ol>
-									<li>Make sure you typed your email incorrectly.</li>
-									<li>Wait a little longer.</li>
-									<li>Check spam to verify email.</li>
-								</ol>
-							<p><strong>Need More Help?</strong></p>
-								<ul>
-									<li>You can contact me here: <a href="soniritu8340@gmail.com">Contact</a></li>
-								</ul>
-						</div>
-					</div>
-					</div>
-<!--Help Contents End-->
-				</div>
-
-<!--Slider Buttons-->
-				<div class="sld-selector bsd">
-					<a href="#login" class="selector-login">Login</a>
-					<a href="#register" class="selector-register"><i>Be a Legend</i></a>
-					<a href="#recover" class="selector-recover">Recover</a>
-          <a href="#help" class="selector-help">Help?</a>
-				</div>
-			</div>
-<!--Slider End-->
-		</div>
-<!--Bottom Column Copyright Footer-->
-			<div class="login-footer">
-<!--Footer Text & Slide Selector for Help-->
-				<div class="sld-selector" >
-					<a href="#" ><b style="color: #810000;">Homepage</b></a>
-					<b>|</b>
-					<p class="cright"><b style="color: rgb(129, 0, 0);">Schicordance</b></p>
-					<b>|</b>
-					<a href="https://schicordancetakecourse.000webhostapp.com/" class="normal"><i><b style="color: rgb(129, 0, 0);">N-user login</b></i></a>
-				</div>
-			</div>
-	</div>
-	<div class="outer-box">
-        <!--Outer container-->
-        <div class="inner-box">
-          <!--Inner container-->
-          <div class="slide-ele slide-active">
-            <!--Carousel switching elements-->
-            <img class="slide-pic" src="https://i.postimg.cc/j2wBQZ4v/slide1.jpg">
-          </div>
-          <div class="slide-ele">
-            <!--Carousel switching elements-->
-            <img class="slide-pic" src="https://i.postimg.cc/J0fvTZT8/slide2.jpg">
-          </div>
-          <div class="slide-ele">
-            <!--Carousel switching elements-->
-            <img class="slide-pic" src="https://i.postimg.cc/vH9ZGzwW/slide3.jpg">
-          </div>
-          <div class="slide-ele">
-            <!--Carousel switching elements-->
-            <img class="slide-pic" src="https://i.postimg.cc/bY4vX5Wy/slide4.jpg">
-          </div>
-          <div class="slide-ele">
-            <!--Carousel switching elements-->
-            <img class="slide-pic" src="https://i.postimg.cc/j5kG7GPL/slide5.jpg">
-          </div>
-          <div class="slide-ele">
-            <!--Carousel switching elements-->
-            <img class="slide-pic" src="https://i.postimg.cc/j2wBQZ4v/slide1.jpg">
-          </div>
+<div style="clear:both"></div>
+<div id="header">
+    <div id="header-wrapper">
+         <div class="logo">
+            <a href="/home" title="Home">
+                                <img width="180" height="50" src="/sites/online.vidyamandir.com/vidyamandir-logo.png" alt="Home"/>
+                        </a>
         </div>
-        <div class="dots-box">
-          <!--Click to switch the box-->
-          <span class="dots dots-active" dots-index="1"></span>
-          <span class="dots" dots-index="2"></span>
-          <span class="dots" dots-index="3"></span>
-          <span class="dots" dots-index="4"></span>
-          <span class="dots" dots-index="5"></span>
+                <div id="preface_last">
+            <div id="preface-wrapper" class="in1">
+                <div class="column C">
+                    <div id="block-superfish-2" class="block ">
+                        <div class="content">
+                            <ul id="superfish-2" class="sf-menu menu-top  sf-horizontal sf-style-none sf-total-items-5 sf-parent-items-0 sf-single-items-5">
+                                <li class="sf-item-1 sf-depth-1 sf-no-children  odd"  id="home" ><a href="/home"  title="Dashboard" class="sf-depth-1">Dashboard</a></li><li class="sf-item-2 sf-depth-1 sf-no-children  even"  id="mysubs-menu" ><a href="/show/all/subjects"  title="Subjects" class="sf-depth-1">Subjects</a></li><li class="sf-item-3 sf-depth-1 sf-no-children  active-trail odd"  id="test-collection" ><a href="/test_collection/list"  title="Test Series" class="sf-depth-1">Test Series</a></li><li class="sf-item-4 sf-depth-1 sf-no-children  even"  id="forum-menu" ><a href="/forum/topics/list"  title="Forum" class="sf-depth-1">Forum</a></li><li class="sf-item-5 sf-depth-1 sf-no-children  odd"  id="webinar-menu" ><a href="/liveclass/list"  title="Live Class" class="sf-depth-1">Live Class</a></li><li class="sf-item-6 sf-depth-1 sf-no-children  even" ><a href="/mytasks"  title="My Tasks" class="sf-depth-1">My Tasks</a></li><li class="sf-item-7 sf-depth-1 sf-no-children  odd"  id="support-desk" ><a href="https://varunkohliin-team.myfreshworks.com/login/auth/onlinevidyamandir?client_id=112141715909197826&redirect_uri=https%3A%2F%2Fvmchelpdesk.freshdesk.com%2Ffreshid%2Fcustomer_authorize_callback" target="_blank" title="Support Desk" class="sf-depth-1">Support Desk</a></li><li class="sf-item-8 sf-depth-1 sf-no-children  even"  id="my-dashboard" ><a href="/reviewer/load/frame?path=/apps/studentdashboard/"  title="My Progress" class="sf-depth-1">My Progress</a></li>                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
         </div>
-      </div>
-    </div>
+        <div id="search-box" class="group-filter-enabled">
+            <form action="/test_collection/29321116/Attempted/quiz/29306314"  accept-charset="UTF-8" method="post" id="learning-search-form" class="custom-form-submit">
+<div><div class="form-item" id="edit-learning-search-text-wrapper">
+ <input  type="text" maxlength="128" name="learning_search_text" id="edit-learning-search-text" size="60" value="" nid="" placeholder="Search" class="form-text" />
 </div>
-<!--code for golden frame-->
-<style>
-.gof1
-{
-  position: relative;
-  top: 101px;
-  width: 900px;
-  left: 200px;
-  z-index: -10;
-}
+<input type="submit" name="op" id="edit-learning-search-submit" value="Submit"  class="black button form-submit" />
+<input type="hidden" name="form_build_id" id="form-4f2ecf079c47af174aedeeb28aff551d" value="form-4f2ecf079c47af174aedeeb28aff551d"  />
+<input type="hidden" name="form_token" id="edit-learning-search-form-form-token" value="e9b92a822a24524d142cc460c1905739"  />
+<input type="hidden" name="form_id" id="edit-learning-search-form" value="learning_search_form"  />
+<input type="hidden" name="st" id="edit-st" value=""  class="form-st" />
+<script> 
+                        $(function(){
+                            var buildIdForSt = $("#learning-search-form input[name=\"form_build_id\"]").val();
+                            setFormSecureToken("learning-search-form",buildIdForSt); 
+                        });
+                    </script><input type="hidden" name="no_of_sec_questions" id="edit-no-of-sec-questions" value=""  />
 
-.gof2
-{
-  position: absolute;
-  top: -25px;
-  width: 115px;
-  left: 120px !important;
-}
+</div></form>
+            <div class="learning-search-icon"></div>
+        </div>
+        
+        <div id="header-content">
+              
+            <div id="notification_block">
+                <div id="notification_tab" class="">
+                  <a id="add-sticky" class="notification_atag" href="" style="float: left;">
+                    <img src="/sites/all/themes/testprep/images/menu-icons/blue/notification.png" alt="Notification"/>
+                  </a>
+                </div>
+                <div id="notification_content_wrapper" class="hidden">
+                    <div id="notification_content"></div>
+                </div>
+            </div>
+            <div id="signup_login">
+                         <a href="#">
+                        <div class="notific-generic-userprofile">
+                            <div class="profile_toggle"><span class="letter-name letter_1">SH</span></div>
+                        </div>
+                    </a>
 
-.gof3
-{
-  position: absolute;
-  top: -5px;
-  width: 115px;
-  right: 245px !important;
-}
+             <div id="profile_wrapper" class="profile_wrapper" style="display:none">
+                 <div class="profile-popup-arrow-up-bg"></div>
+                     <div class="profile-popup-arrow-up"></div>
+                     <div class="profile_inner_wrapper">
+                         <ul id="menu"> 
+                           <a class="profile-link" href="/user/profile/settings"><li>Profile</li></a><a class="my_certificate_link" href="/user/all/certificates"><li>My Certificates</li></a><a class="calendar-link" href="/calendar"><li>Calendar</li></a><a class="" href="/pinboard"><li>Pinboard</li></a><a class="cngpwd-link" href="/user/16824/edit/chgpwd"><li>Change Password</li></a><a class="logout-link" href="/logout?ts=1657194741"><li>Logout</li></a>                         </ul> 
+                     </div> 
+                 </div>
+                                        <div id="welcome" class="user_login_names profile_name_toggle" title=""><span title="Shivam Kumar" class="login_username">Shivam Kumar</span>
+                <div class="arrow-down notific-generic profile_toggle_down"></div>
+                <div class="arrow-up notific-generic profile_toggle_up" style="display:none"></div>
+            </div>
+            <div id="welcome" class="user_login_links"><a href="/user/login">Login</a></div>
+            <script type="text/javascript">
+                var cookie = document.cookie;
+                $('.user_login_links').show();
+                $('.user_login_names').hide();
+                if(cookie.indexOf('ln') != -1 && cookie.indexOf('lid') != -1){
+                    logedin = true;
+                    $('.user_login_names').show();
+                    var usercookie = getCookie('ln');
+                    var userid = getCookie('lid');
+                    var username = usercookie.split('@');
+                    var user_part = username[0];
+                    $('#welcome .user_login_name').html(user_part.substr(0,7));
+                   $('.user_login_links').hide();
+                }
+                // ajax call to get notification count
+                var check='test_collection';  
+                $.ajax({
+                    url:mtp_url('/load/ajax/content?uid='+userid+'&imageflag=false'),
+                    datatype:"json",
+                    timeout : 10000,
+                    success:function(data){
+                       var json_var = jQuery.parseJSON(data);
+                       var content;
+                       $.each(json_var, function(i, json_var) {
+                           if(json_var.notifications){
+                                content = json_var.notifications.notification_content;
+                           }
+                        });
+                       if(content == '0'){
+                           $('#notification_content_wrapper').addClass('hidden');
+                           $('.notification_atag').attr('href','/notifications');
+                            } else {
+                                if(userid>0){
+                                    $('#notification_content_wrapper').removeClass('hidden');                                           }    
+                                $('#notification_content'). html('<div style="border:1px solid;float:left">'+content+'</div>');
+                            }
+                    }
+                });
+                var windowUrl = window.location.href;
+                if(windowUrl.indexOf('forum') !== -1 || windowUrl.indexOf('course/view') !== -1 || windowUrl.indexOf('task/list') !== -1){
+                    $('#ask-an-expert-menu').removeClass('hidden'); 
+                    $('#tasks-menu').removeClass('hidden');
+                }
 
-
-.gof4
-{
-  position: relative;
-  top: 465px;
-  width: 930px;
-  left: 150px;
-}
-
-
-
-</style>
-<!--code for golden frame-->
-<img class="gof1" src="https://raw.githubusercontent.com/cgc-dan/blog/main/myfreecams_giveaway/images/slider_top.png"></div></img>
-<img class="gof2" src="https://raw.githubusercontent.com/cgc-dan/blog/main/myfreecams_giveaway/images/slider_left.png"></div></img>
-<img class="gof3" src="https://raw.githubusercontent.com/cgc-dan/blog/main/myfreecams_giveaway/images/slider_right.png"></div></img>
-<img class="gof4" src="https://raw.githubusercontent.com/cgc-dan/blog/main/myfreecams_giveaway/images/slider_bottom.png"></div></img>
-  
-<script>
-const DURATION="300ms";
-const INTERVAL=3000;
-var index=1;
-var isAutoPlay;
-var innerBox=document.querySelector(".inner-box");
-var slideNum=document.querySelectorAll('.slide-ele').length;
-
-var moveWidth=document.querySelector('.inner-box').offsetWidth;
-var currentOffset=moveWidth;
-var dotItems = document.querySelectorAll('.dots');
-
-var animate;
-function changeDotsStyle() {
- document.querySelector('.dots.dots-active').classList.remove('dots-active');
-  if(index==slideNum){
-    dotItems[0].classList.add('dots-active');
-  }else{
-    dotItems[index - 1].classList.add('dots-active');
-  }
-}
-
-function carousel(dur=DURATION){
-  innerBox.addEventListener('transitionend', () => {
-  if(index==slideNum+1){
-index=1;
-currentOffset = moveWidth;
-changeBoxLoc(0,"0ms");
-}
-} )
-if(index<=slideNum){
-
-currentOffset = moveWidth * (index-1);
-changeBoxLoc(-currentOffset,dur);
-index++;
-}
-
-  
-}
-function changeBoxLoc(offset,duration="0ms"){
-  changeDotsStyle() ;
-  innerBox.style.transform=`translateX(${offset}px)`;
-  innerBox.style.transitionDuration=duration;
-}
-
-
-function autoPlay(){
-  if(isAutoPlay){ return; }
-	isAutoPlay = true;
-  animate=setInterval(carousel,INTERVAL)
-}
-
-function stopAutoPlay() {
-	if(!isAutoPlay){ return; }
-	isAutoPlay = false;
-	clearInterval(animate);
-}
-
-function dotsControl() {
-	for(dot of dotItems){
-		dot.addEventListener("click", (e) => {
-      stopAutoPlay();
-      index = e.target.getAttribute('dots-index') ;
-      //console.log(index);
-			carousel();
-			autoPlay();
-		});
-	}	
-}
+                if(windowUrl.indexOf('course/view') !== -1 || windowUrl.indexOf('task') !== -1){
+                    $('#tasks-menu').removeClass('hidden');
+                }
+                if( windowUrl.indexOf('topic/view') !== -1 || windowUrl.indexOf('course?') !== -1 || windowUrl.indexOf('course/subscription/view') !== -1  || windowUrl.indexOf('whereami') !== -1){
+                    $('#categories-menu').addClass('hidden');
+                    if(windowUrl.indexOf('course') !== -1){
+                       $('#mysubs-menu').removeClass('hidden'); 
+                    }
+                }
+                 if( windowUrl.indexOf('home') !== -1 ){
+                    $('#categories-menu').addClass('hidden');
+                       $('#mysubs-menu').removeClass('hidden'); 
+                }
+            </script>
+            </div>
+            
+        </div>
+            </div><!-- /header-wrapper -->
 
 
-function changePageStyle(){
-  var bodyTag=document.getElementsByTagName("body")[0];
-  bodyTag.onclick=function(){
-    var balloon=document.getElementsByClassName("balloon")[0];
-    var firstPage=document.getElementsByClassName("first-page");
-    var secondPage=document.getElementsByClassName("second-page");
-    for(let i=0;i<firstPage.length;i++){
-      firstPage[i].style.animation='jumpout 1.2s 1';
-     setTimeout(function(){
-      firstPage[i].style.display='none';
-     },1200);
+</div> <!-- /header -->
+
+
+<!--<div id="design-border"> </div>-->
+            
+        <div id="wrapper">
+            <div class="header-seprator"></div>            <div id="content" >
+                                                                                <div class="content-middle"><div id="test-series-wrapper"><div id="test-series-view">
+        <div class="left-nav">
+        <ul>
+        <li><a href="/test_collection/13675380/Dashboard/quiz">2023 JEE Main (Gen-3)                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+            <li><a href="/test_collection/20157034/Dashboard/quiz">Test Paper PJ10P23-1                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+            <li><a href="/test_collection/20515390/Dashboard/quiz">2023 JEE Advanced (Gen: 1 - 7)                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+            <li><a href="/test_collection/20515649/Dashboard/quiz">2023 JEE Advanced (Gen: 3-6)                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+            <li><a href="/test_collection/25479352/Dashboard/quiz">2023 JEE Main Test (Gen 1- 7)                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+            <li><a href="/test_collection/26804617/Dashboard/quiz">2023 KVPY (SA) Mock Test                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+            <li><a href="/test_collection/26939003/Dashboard/quiz">2023 class-XII Patna Test_GEN_1                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+            <li><a href="/test_collection/27288343/Dashboard/quiz">2023 JEE Main (10P23 - XII Rollover Students)                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+            <li><a href="/test_collection/27734584/Dashboard/quiz">2023 JEE Advanced (10P23 - XII Rollover Students)                    <div class="test_lock inactive"></div>
+                    
+            </a>
+        </li>
+        <li class="active">
+        <a href=/test_collection/29321116/Dashboard/quiz class="active">JEE 2023 Booster Test                    <div class="test_lock"></div>
+        </a>
+        <ul>
+            <li><a href=/test_collection/29321116/Active/quiz class="">Active <span>0</span></a></li>
+            <li><a href=/test_collection/29321116/Upcoming/quiz class="">Upcoming <span>0</span></a></li>
+            <li><a href=/test_collection/29321116/Attempted/quiz class="active">Attempted <span>2</span></a></li>
+            <li><a href=/test_collection/29321116/Missed/quiz class="">Missed <span>0</span></a></li>
+        </ul>
+    </li>
+    </ul>    </div>
+            <div class="right-nav">
+        <h1>JEE 2023 Booster Test - Attempted                    
+        </h1>
+              
+<div class="quiz-reports-tab-wrapper">
+    <!--show tab navigation only if allowed tab is greater than 1-->
+        <div class="quiz-reports-nav">
+        <ul>
+            <li id=score_card><a href="/quiz/29306314/result?tcid=29321116&tab=score_card"class="active">Score Card</a></li><li id=key_answer><a href="/quiz/29306314/result?tcid=29321116&tab=key_answer">Answer Key</a></li><li id=comparison_chart><a href="/quiz/29306314/result?tcid=29321116&tab=comparison_chart">Comparison Chart</a></li><li id=questions_list><a href="/quiz/29306314/result?tcid=29321116&tab=questions_list">Questions List</a></li><li id=accuracy><a href="/quiz/29306314/result?tcid=29321116&tab=accuracy">Accuracy</a></li><li id=topic_wise><a href="/quiz/29306314/result?tcid=29321116&tab=topic_wise">Tag Wise Report</a></li><li id="quiz-report-more"><a>More...</a><ul><li id=subject_wise><a href="/quiz/29306314/result?tcid=29321116&tab=subject_wise">Subject Wise Report</a></li>        </ul>
+    </div>
+        <div class="quiz-reports-tab">
+        
+            <div class="score_card">
+        <table class="data-table">
+            <tr>
+                <td class="data-td top-td">
+                    <div class="ico rank"></div>
+                    <div class="text-result">
+                        <span>N/A</span><br/>
+                        My Rank                        
+                    </div>
+                </td>
+                <td  class="data-td top-td">
+                    <div class="ico students"></div>
+                    <div class="text-result">
+                        <span>1650</span><br/>
+                        Number of Students                        
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td  class="data-td">
+                    <div class="ico marks"></div>
+                    <div class="text-result">
+                        <span>162</span> / 174<br/>
+                        My Marks                           
+                    </div>
+                </td>
+                <td  class="data-td">
+                    <div class="ico accuracy"></div>
+                    <div class="text-result">
+                        <span>94</span>%<br/>
+                        My Accuracy                        
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td  class="data-td">
+                    <div class="ico attempt"></div>
+                    <div class="text-result">
+                        <span>54</span> / 54<br/>
+                        Attempted Questions                       
+                    </div>
+                </td>
+                <td  class="data-td">
+                    <div class="ico pace"></div>
+                    <div class="text-result">
+                        <span>27s</span><br/>
+                        My Pace (Per Question) 
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="data-td">
+                    <div class="ico percentile"></div>
+                    <div class="text-result">
+                        <span>N/A</span> <br/>                        
+                        Percentile                    </div>
+                </td>
+                <td class="data-td">
+                    <div class="ico reference"></div>
+                    <div class="text-result">
+                        <span>1</span><br/>
+                        Reference Rank                    </div>
+                </td>
+            </tr>            
+        </table>
+    </div>
+    <style>
+    .data-table {
+        border-left: hidden;
+        border-right: hidden;
+        border-spacing: 0;
+        border-collapse: collapse;
     }
-    for(let i=0;i<secondPage.length;i++){
-      setTimeout(function(){
-        secondPage[i].style.display='block';
-        moveWidth=document.querySelector('.slide-ele').offsetWidth+0.7;
-       },1200);
+    .data-td{
+        border-right: hidden;
     }
-    bodyTag.onclick=null;
-  }
- 
-}
 
-
-function changeLogin(){
-loginTitle=document.querySelectorAll('.login-title');
-loginForm=document.querySelectorAll('.login-form');
-for(tit of loginTitle)
-{
-  tit.addEventListener("click",(e)=>{
-    titleIndex=e.target.getAttribute('title-index')
-    formIndex=document.querySelector('.form-active').getAttribute('form-index');
-    if(titleIndex!=formIndex){
-    activeTitle=document.querySelector('.login-active').classList.remove('login-active');
-    activeForm=document.querySelector('.form-active').classList.remove('form-active');
-    loginTitle[titleIndex-1].classList.add('login-active')
-    loginForm[titleIndex-1].classList.add('form-active');
+    .top-td {
+        border-top:hidden;  
     }
-  })
-}
-}
+</style>    </div>
+</div>
+    </div>
+    </div></div></div>
+                                                <div class="clearfix"></div>
+            </div> <!-- end content -->
+                                                    <div style="clear:both"></div>
+        </div> <!-- end wrapper -->
 
-
-window.onload = function() {
-  changeLogin();
-  changePageStyle();
-  autoPlay();
-  dotsControl();
-
-}
-</script>
-<script>
-
-</script>
-</body>
+        <div style="clear:both"></div>
+        <div id="footer">
+    <div id="footer-wrapper" class="clearfix">
+        <div id="footer_links" style="float: none; width: 100%">
+            <a title="Privacy Policy" href="http://www.vidyamandir.com/privacy_policy.html" target="_blank"> Privacy Policy</a>
+            <a title="Terms and Condition" href="http://www.vidyamandir.com/terms_conditions.html" target="_blank">Terms and Condition</a>
+            <a title="About Us" id="footer_last" href="http://www.vidyamandir.com/aboutus.html" target="_blank">About Us</a>
+            <div class="tribyte_icon tribyte_footer_logo">
+                <a href="//www.tribytetech.com">
+                    <img src="/tribyte_logo/footer-logo_black.svg"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>        <div style="clear:both"></div>
+                <div id="login-popup"></div>
+                    <style>
+                #wrapper #edit-taxonomy-2-wrapper{
+                    display:none;
+                    visibility:hidden;
+                }
+            </style>
+            </body>
 </html>
