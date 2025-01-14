@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EonBook: The Calamatic Guide.</title>
+  <title>EonBook: The Calamatic Book.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel = "icon" type = "image/png" href = "https://i.ibb.co/47tFWhk/schicordance-logo.gif" > 
@@ -21,7 +21,7 @@ body {
   background-color: black;
   color: white;
 }
-  
+
 .sidenav {
   height: 100%;
   width: 200px;
@@ -582,10 +582,168 @@ img:hover {
   }
 </style>
 
-<l ><img style="position:absolute; top:10px; right:145px; width:100px; height:20px" src="https://hitwebcounter.com/counter/counter.php?page=7692518&style=0027&nbdigits=9&type=page&initCount=0" title="Total Website Hits" Alt="views counter"   border="0" />
-  <Font face="Modern nnumber 20" color="d90d44" style="position:absolute; top:10px; left:1000px; width:100px; height:10px">Number of views :-</Font></l>                                    
-  <Font face="Modern nnumber 20" color="d90d44" style="position:absolute; top:55px; left:1000px; width:100px; height:10px">Trusted by :-</Font></l>                                    
-  <Font face="Modern nnumber 20" color="d90d44" style="position:absolute; top:90px; left:1000px; width:100px; height:10px">Rated :-</Font></l>                                    
+<!--Code for metrics-->
+<style>
+
+  .metric {
+      margin: 15px 0;
+      text-align: center;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 80%;
+  }
+
+  .starsM {
+      color: gold;
+      font-size: 28px;
+  }
+
+  .labelM {
+      font-weight: bold;
+      font-size: 20px;
+      color: #333;
+  }
+
+  .valueM {
+      font-size: 24px;
+      margin-top: 8px;
+      color: #555;
+  }
+
+  .popupM {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: url('https://miro.medium.com/v2/resize:fit:702/1*Ra02AqsQlC0KV229EvM98g.png') no-repeat center center;
+      background-size: cover;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      border-radius: 15px;
+      z-index: 1000;
+      width: 90%;
+      max-width: 400px;
+  }
+
+  .popupM.active {
+      display: block;
+  }
+
+  .overlayM {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+  }
+
+  .overlayM.active {
+      display: block;
+  }
+
+  .circular-buttonM {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: url('https://i.ibb.co/w0FFmrG/settings-nb.png') no-repeat center center;
+      background-size: cover;
+      border: none;
+      cursor: pointer;
+      position: fixed;
+      top: 40px;
+      right: 200px;
+      transition: transform 0.5s ease, box-shadow 0.3s ease;
+  }
+
+  .circular-buttonM.clicked {
+      animation: spin 1s linear;
+  }
+
+  .circular-buttonM.glow {
+      box-shadow: 0 0 15px 5px rgba(0, 128, 255, 0.75);
+  }
+
+  @keyframes spin {
+      0% {
+          transform: rotate(0deg);
+      }
+      100% {
+          transform: rotate(360deg);
+      }
+  }
+</style>
+
+<button class="circular-buttonM" id="popupButtonM"></button>
+
+<div class="overlayM" id="overlayM"></div>
+
+<div class="popupM" id="popupM">
+    <div class="metric">
+        <div class="labelM">Unique Views:</div>
+        <div class="valueM" id="uniqueViews">0</div>
+    </div>
+
+    <div class="metric">
+        <div class="labelM">Trusted By:</div>
+        <div class="valueM" id="trustedBy">0</div>
+    </div>
+
+    <div class="metric">
+        <div class="labelM">Rating:</div>
+        <div class="starsM">
+            &#9733;&#9733;&#9733;&#9733;&#9733;
+        </div>
+        <div class="valueM">5/5</div>
+    </div>
+</div>
+
+<script>
+  // Increment unique views on page load using localStorage
+  if (!localStorage.getItem('uniqueViews')) {
+      localStorage.setItem('uniqueViews', '0');
+  }
+  let uniqueViews = parseInt(localStorage.getItem('uniqueViews')) + 1;
+  localStorage.setItem('uniqueViews', uniqueViews);
+  document.getElementById('uniqueViews').textContent = uniqueViews;
+
+  // Generate a random "trusted by" number
+  const trustedBy = Math.floor(Math.random() * 10000) + 500;
+  document.getElementById('trustedBy').textContent = trustedBy;
+
+  // Popup logic
+  const popupButtonM = document.getElementById('popupButtonM');
+  const popupM = document.getElementById('popupM');
+  const overlayM = document.getElementById('overlayM');
+
+  popupButtonM.addEventListener('click', () => {
+      popupM.classList.toggle('active');
+      overlayM.classList.toggle('active');
+      popupButtonM.classList.add('clicked');
+
+      if (popupM.classList.contains('active')) {
+          popupButtonM.classList.add('glow');
+      } else {
+          popupButtonM.classList.remove('glow');
+      }
+
+      setTimeout(() => {
+          popupButtonM.classList.remove('clicked');
+      }, 1000); // Remove spin animation after 1 second
+  });
+
+  overlayM.addEventListener('click', () => {
+      popupM.classList.remove('active');
+      overlayM.classList.remove('active');
+      popupButtonM.classList.remove('glow');
+  });
+</script>                         
 
 <style>
 
@@ -738,9 +896,8 @@ function closeSearch() {
 <style>
 #google_translate_element {
   position: absolute;
-  top: calc(270px + 24px);
-  right: 260px!important;
-  z-index: 99999;
+  top: calc(280px + 24px);
+  right: 35vh!important;
 }
 
 .goog-logo-link {
@@ -1258,90 +1415,265 @@ input[type=submit]:hover {
   clear: both;
 }
 
-/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 650px) {
-  .col {
-    width: 100%;
-    margin-top: 0;
-  }
-  /* hide the vertical line */
-  .vl {
-    display: none;
-  }
-  /* show the hidden text on small screens */
-  .hide-md-lg {
-    display: block;
-    text-align: center;
-  }
-}
 </style>
 
-<button4 onclick="document.getElementById('id01').style.display='block'" style="width:auto; background-color: #002fff; color: white; padding: 18px 15px; margin: 8px 0; border: none; cursor: pointer;
- position: relative; top: -16px; left: 1220px;">
-<i class='fa fa-user' style='font-size:36px'></i></button4>
-<div id="id01" class="modal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4); padding-top: 100px;">
-  <form class="modal-content animate" action="/action_page.php" method="post" style=" background-color: #9bddee; margin: 5% auto 15% auto; border: 1px solid #888; width: 80%;">
-        <div class="row">
-         <!--<center><h1 style="color:black; background-color: white;">login to Schicordance</h1></center>-->
-      <div class="vl"style=" top:10px; position: relative; left:540px; transform: translate(-50%);border: 2px solid #ddd;height: 175px;">
-        <span class="vl-innertext" style=" position: absolute; top: 50%; transform: translate(-50%, -50%); background-color: #f1f1f1; border: 1px solid #ccc; border-radius: 50%; padding: 8px 10px; color: black;">or</span>
+<!--for login and signup button-->
+<style>
+
+  /* Circular Button placed in top right corner */
+  .popup-btn {
+      position: relative;
+      top: -10px;
+      left: 180vh;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 10px;
+      transition: all 0.3s ease-in-out;
+      animation: neonGlow 1.5s infinite alternate;
+  }
+
+  .popup-btn img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+  }
+
+  .popup-btn:hover img {
+      transform: scale(1.1);
+  }
+
+  /* Neon Glow Animation */
+  @keyframes neonGlow {
+      0% {
+          box-shadow: 0 0 10px rgba(0, 123, 255, 0.5), 0 0 20px rgba(0, 123, 255, 0.5);
+      }
+      50% {
+          box-shadow: 0 0 30px rgba(0, 123, 255, 1), 0 0 60px rgba(0, 123, 255, 1);
+      }
+      100% {
+          box-shadow: 0 0 10px rgba(0, 123, 255, 0.5), 0 0 20px rgba(0, 123, 255, 0.5);
+      }
+  }
+
+  /* Popup Styling */
+  .popup {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease-in-out;
+  }
+
+  /* Container (the form box inside the popup) */
+  .container {
+      width: 320px; /* Increased width for better layout */
+      background: rgba(255, 255, 255, 0.9); /* Translucent background */
+      padding: 30px;
+      box-shadow: 0 0 20px 5px rgba(0, 123, 255, 0.8); /* Neon Blue Glow on Border */
+      border-radius: 12px;
+      position: relative;
+      max-width: 100%; /* Ensures responsiveness */
+      backdrop-filter: blur(5px); /* Optional: Adds a blur effect behind the popup */
+      animation: neonGlow 1.5s infinite alternate;
+  }
+
+  /* Close button */
+  .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 30px;
+      color: #333;
+      cursor: pointer;
+      transition: color 0.3s ease;
+  }
+
+  .close-btn:hover {
+      color: #007BFF;
+  }
+
+  /* Form Header */
+  .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+      letter-spacing: 1px;
+  }
+
+  /* Form Group (for labels and inputs) */
+  .form-group {
+      margin-bottom: 20px;
+  }
+
+  /* Label Styling */
+  .form-group label {
+      display: block;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 5px;
+  }
+
+  /* Input Styling */
+  .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: all 0.2s ease-in-out;
+  }
+
+  .form-group input:focus {
+      border-color: #007BFF;
+      outline: none;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.8);
+  }
+
+  /* Button Styling */
+  .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+  }
+
+  .btn:hover {
+      background-color: #0056b3;
+      box-shadow: 0 0 10px 3px rgba(0, 123, 255, 0.8); /* Neon Blue Glow */
+  }
+
+  /* Switch Text */
+  .switch {
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  .switch a {
+      color: #007BFF;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+  }
+
+  .switch a:hover {
+      text-decoration: underline;
+  }
+
+  /* Sign Up Form Hidden by Default */
+  #signupForm {
+      display: none;
+  }
+
+  /* Active Neon Glow only when popup is visible */
+  .popup-btn.active {
+      animation: neonGlow 1.5s infinite alternate;
+  }
+
+  /* Ensure no input elements overflow the container */
+  .container input,
+  .container button {
+      box-sizing: border-box;
+  }
+</style>
+
+    <!-- Button to trigger popup -->
+    <button class="popup-btn" onclick="togglePopup()">
+      <img src="https://i.pinimg.com/736x/3f/5a/d8/3f5ad816179850d23695910e906554a7.jpg" alt="Popup Button">
+  </button>
+
+  <!-- Popup -->
+  <div class="popup" id="popup" onclick="closePopup(event)">
+      <div class="container" onclick="event.stopPropagation()">
+          <span class="close-btn" onclick="togglePopup()">&times;</span>
+          
+          <!-- Login Form -->
+          <form id="loginForm">
+              <h2>Login</h2>
+              <div class="form-group">
+                  <label for="loginUsername">Username</label>
+                  <input type="text" id="loginUsername" placeholder="Enter your username" required>
+              </div>
+              <div class="form-group">
+                  <label for="loginPassword">Password</label>
+                  <input type="password" id="loginPassword" placeholder="Enter your password" required>
+              </div>
+              <button type="submit" class="btn">Login</button>
+              <div class="switch">
+                  New here? <a id="showSignup">Sign up now</a>
+              </div>
+          </form>
+
+          <!-- Signup Form -->
+          <form id="signupForm">
+              <h2>Sign Up</h2>
+              <div class="form-group">
+                  <label for="signupUsername">Username</label>
+                  <input type="text" id="signupUsername" placeholder="Enter your username" required>
+              </div>
+              <div class="form-group">
+                  <label for="signupEmail">Email</label>
+                  <input type="email" id="signupEmail" placeholder="Enter your email" required>
+              </div>
+              <div class="form-group">
+                  <label for="signupPassword">Create Password</label>
+                  <input type="password" id="signupPassword" placeholder="Create your password" required>
+              </div>
+              <button type="submit" class="btn">Sign Up</button>
+              <div class="switch">
+                  Already have an account? <a id="showLogin">Login here</a>
+              </div>
+          </form>
       </div>
+  </div>
 
-      <div class="col" style="float: left;width: 50%;margin: auto;padding: 0 50px;margin-top: 6px;">
-        <input type="text" name="username" placeholder="Enter your Email"  style=" width: 100%; padding: 12px; border: none; border-radius: 4px; margin: 5px 0; opacity: 0.85; display: inline-block; font-size: 17px; line-height: 20px; text-decoration: none;" required>
-        <input type="password" name="password" placeholder="Enter your password" style=" width: 100%; padding: 12px; border: none; border-radius: 4px; margin: 5px 0; opacity: 0.85; display: inline-block; font-size: 17px; line-height: 20px; text-decoration: none;" required>
-        <input type="submit" value="Login" style=" width: 100%; padding: 12px; border: none; border-radius: 4px; margin: 5px 0; opacity: 0.85; display: inline-block; font-size: 17px; line-height: 20px; text-decoration: none; color: black;">
-        <!--<a href="#" class="fb btn" style=" background-color: #3B5998; color: white;">
-          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-         </a>
-        <a href="#" class="twitter btn" style="background-color: #55ACEE; color: white;">
-          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-        </a>
-        <a href="#" class="google btn" style="background-color: #dd4b39; color: white;">
-            <i class="fa fa-google fa-fw"></i> Login with Google
-        </a>-->
-      </div>
+  <script>
+      const loginForm = document.getElementById('loginForm');
+      const signupForm = document.getElementById('signupForm');
+      const showSignup = document.getElementById('showSignup');
+      const showLogin = document.getElementById('showLogin');
+      const popup = document.getElementById('popup');
+      const popupBtn = document.querySelector('.popup-btn');
 
-      <div class="col" style="float: left;width: 50%;margin: auto;padding: 0 50px;margin-top: 6px;">
-        <div class="hide-md-lg" style="display: none;">
-          <p>Or sign in manually:</p>
-        </div>
+      // Toggle the visibility of the popup
+      function togglePopup() {
+          popup.style.display = (popup.style.display === "flex") ? "none" : "flex";
+          popupBtn.classList.toggle('active'); // Add neon glow animation to the button when popup is active
+      }
 
-        <input type="text" name="username" placeholder="Enter your Schicordance username"  style=" width: 100%; padding: 12px; border: none; border-radius: 4px; margin: 5px 0; opacity: 0.85; display: inline-block; font-size: 17px; line-height: 20px; text-decoration: none;" required>
-        <input type="password" name="password" placeholder="Enter your password" style=" width: 100%; padding: 12px; border: none; border-radius: 4px; margin: 5px 0; opacity: 0.85; display: inline-block; font-size: 17px; line-height: 20px; text-decoration: none;" required>
-        <input type="submit" value="Login" style=" width: 100%; padding: 12px; border: none; border-radius: 4px; margin: 5px 0; opacity: 0.85; display: inline-block; font-size: 17px; line-height: 20px; text-decoration: none; color: black;">
-      </div>
-      
-    </div>
-    <div class="container" style="background-color:#9bddee; position: relative; border-radius: 5px; padding: 10px 0 30px 0;">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn"
-       style="width: auto; padding: 10px 18px; background-color: #f44336;">Cancel</button>
-    </div>
-    <div class="bottom-container" style=" text-align: center; background-color: rgb(0, 0, 0); border-radius: 0px 0px 4px 4px;">
-       <div class="row">
-         <div class="col" style="float: left;width: 50%;margin: auto;padding: 0 50px;margin-top: 6px;">
-           <a href="#" style="color:white" class="btn">Sign up</a>
-         </div>
-         <div class="col" style="float: left;width: 50%;margin: auto;padding: 0 50px;margin-top: 6px;">
-           <a href="#" style="color:white" class="btn">Forgot password?</a>
-         </div>
-       </div>
-    </div>
-  </form>
-</div>
+      // Close popup when clicking outside
+      function closePopup(event) {
+          if (event.target === popup) {
+              togglePopup();
+          }
+      }
 
+      // Switch to Signup form
+      showSignup.addEventListener('click', () => {
+          loginForm.style.display = 'none';
+          signupForm.style.display = 'block';
+      });
 
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
+      // Switch to Login form
+      showLogin.addEventListener('click', () => {
+          signupForm.style.display = 'none';
+          loginForm.style.display = 'block';
+      });
+  </script>
 
 <Hr>
 
@@ -1376,16 +1708,16 @@ function startup() {
 
 .fsc
 {
-  position: absolute;
-  top: 360px;
-  left: 800px;
+  position: relative;
+  top: 0px;
+  left: 90vh;
 }
 
 .nk
 {
-  position: absolute;
-  top: 360px;
-  left: 640px;
+  position: relative;
+  top: 0px;
+  left: 40vh;
 }
 
 .lp
@@ -1420,8 +1752,8 @@ function startup() {
   });
 </script>
 
-<i><b style="position: absolute; left: 1030px; top: 360px;">Change background color:-</b></i>
-<input type="color" id="sltdcolor" title="Select the color" style="position: relative; left: 1030px; top: 0px;">
+<i><b style="position: relative; left: 75vh; top: 0px;">Change background color:-</b></i>
+<input type="color" id="sltdcolor" title="Select the color" style="position: relative; left: 80vh; top: 0px;">
 <script>
 document.getElementById("sltdcolor").addEventListener("change",colorchange);
 function colorchange(){
